@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\CreatePostRequest;
 use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Services\PostService;
@@ -10,7 +11,7 @@ class PostController extends Controller
 {
     /** @var PostService $postService */
     private $postService;
-    
+
     public function __construct(PostService $service)
     {
         $this->postService = $service;
@@ -41,9 +42,11 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(CreatePostRequest $request)
     {
-        //
+        $result = $this->postService->create($request);
+
+        return $result;
     }
 
     /**

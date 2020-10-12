@@ -45,4 +45,18 @@ class PostService
 
         return $posts;
     }
+
+    /**
+     * @param Request $request
+     * @param string|int $id
+     * @return array
+     */
+    public function update(Request $request, $id): array
+    {
+        $data = $request->only('title', 'description');
+        
+        $updated = $this->post->update($id, $data);
+
+        return $updated;
+    }
 }

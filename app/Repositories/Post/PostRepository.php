@@ -63,4 +63,31 @@ class PostRepository implements PostContract
             'error' => 'Posts found.',
         ];
     }
+
+    public function update($id, $properties): array
+    {
+        $foundPost = Post::find($id);
+
+        if (!($foundPost instanceof Post)) {
+            return [
+                'status' => 404,
+                'error' => 'Post not found.',
+            ];
+        }
+
+        $updated = $foundPost->update($properties);
+
+        if (!$updated) {
+            return [
+                'status' => 500,
+                'error' => 'Failed to update post.',
+            ];
+        }
+
+        return [
+            'status' => 200,
+            'error' => 'Post updated.',
+            'data' => $foundPost->fresh()->toArray(),
+        ];
+    }
 }

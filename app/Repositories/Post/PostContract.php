@@ -11,4 +11,10 @@ interface PostContract
     public function find($id): array;
 
     public function all(): array;
+
+    /**
+     * @param string|int $id
+     * @param array $properties
+     */
+    public function update($id, $properties): array;
 }

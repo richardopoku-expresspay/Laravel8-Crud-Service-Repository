@@ -27,4 +27,22 @@ class PostRepository implements PostContract
             'error' => 'Post Created.',
         ];
     }
+
+    public function find($id): array
+    {
+        $post = Post::find($id);
+
+        if (!($post instanceof Post)) {
+            return [
+                'status' => 404,
+                'error' => 'Post not found.',
+            ];
+        }
+
+        return [
+            'status' => 200,
+            'data' => $post->toArray(),
+            'error' => 'Post found.',
+        ];
+    }
 }

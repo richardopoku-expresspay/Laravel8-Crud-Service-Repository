@@ -16,15 +16,25 @@ class PostService
         $this->post = $post;
     }
 
-    public function create(Request $request)
+    public function create(Request $request): array
     {
         //do a whole lot of business logic here, only call the repository to touch DB
         $data = [
             'title' => $request->title,
             'description' => $request->description,
         ];
-        
+
         $post = $this->post->create($data);
+
+        return $post;
+    }
+
+    /**
+     * @param string|int $id
+     */
+    public function get($id): array
+    {
+        $post = $this->post->find($id);
 
         return $post;
     }

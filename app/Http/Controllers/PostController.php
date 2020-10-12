@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use Illuminate\Http\Request;
+use App\Services\PostService;
 
 class PostController extends Controller
 {
+    /** @var PostService $postService */
+    private $postService;
+    
+    public function __construct(PostService $service)
+    {
+        $this->postService = $service;
+    }
     /**
      * Display a listing of the resource.
      *

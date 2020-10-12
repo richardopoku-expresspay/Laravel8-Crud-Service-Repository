@@ -23,7 +23,7 @@ class PostRepository implements PostContract
 
         return [
             'status' => 200,
-            'data' => $post->toArray(),
+            'data' => $post->fresh()->toArray(),
             'error' => 'Post Created.',
         ];
     }

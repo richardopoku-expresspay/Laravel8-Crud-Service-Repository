@@ -17,4 +17,7 @@ interface PostContract
      * @param array $properties
      */
     public function update($id, $properties): array;
+
+    /** @param string|int $id */
+    public function delete($id): array;
 }

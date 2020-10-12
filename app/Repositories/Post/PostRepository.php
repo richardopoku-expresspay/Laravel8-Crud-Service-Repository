@@ -90,4 +90,23 @@ class PostRepository implements PostContract
             'data' => $foundPost->fresh()->toArray(),
         ];
     }
+
+    public function delete($id, $post=null): array 
+    {
+        $post = $post instanceof Post ? $post : Post::find($id);
+
+        if (!($post instanceof Post)) {
+            return [
+                'status' => 404,
+                'error' => 'Post not found.',
+            ];
+        } 
+
+        $post->delete();
+
+        return [
+            'status' => 200,
+            'error' => 'Post deleted.',
+        ];
+    }
 }

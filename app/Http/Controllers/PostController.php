@@ -97,6 +97,8 @@ class PostController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $result = $this->postService->remove($id);
+
+        return $result;
     }
 }

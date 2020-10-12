@@ -54,9 +54,28 @@ class PostService
     public function update(Request $request, $id): array
     {
         $data = $request->only('title', 'description');
-        
+
         $updated = $this->post->update($id, $data);
 
         return $updated;
+    }
+
+    /**
+     * @param string|int $id
+     */
+    public function remove($id): array
+    {
+        $post = $this->post->find($id);
+
+        if (is_array($post) && array_key_exists('status', $post) && $post['status'] == 404) {
+            return [
+                'status' => 400,
+                'error' => 'Cannot delete non-existent post.',
+            ];
+        }
+
+        $result = $this->post->delete($id);
+
+        return $result;
     }
 }

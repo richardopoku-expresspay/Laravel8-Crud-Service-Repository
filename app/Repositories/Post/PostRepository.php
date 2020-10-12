@@ -45,4 +45,22 @@ class PostRepository implements PostContract
             'error' => 'Post found.',
         ];
     }
+
+    public function all(): array 
+    {
+        $posts = Post::all();
+
+        if (!$posts) {
+            return [
+                'status' => 500,
+                'error' => 'Error fetching posts.',
+            ];
+        }
+
+        return [
+            'status' => 200,
+            'data' => $posts->toArray(),
+            'error' => 'Posts found.',
+        ];
+    }
 }

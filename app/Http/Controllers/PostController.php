@@ -23,7 +23,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = $this->postService->getAll();
+
+        return $posts;
     }
 
     /**

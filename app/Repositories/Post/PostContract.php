@@ -9,4 +9,6 @@ interface PostContract
 
     /** @param string|int $id */
     public function find($id): array;
+
+    public function all(): array;
 }

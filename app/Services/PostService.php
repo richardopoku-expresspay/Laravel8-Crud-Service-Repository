@@ -38,4 +38,11 @@ class PostService
 
         return $post;
     }
+
+    public function getAll(): array
+    {
+        $posts = $this->post->all();
+
+        return $posts;
+    }
 }
